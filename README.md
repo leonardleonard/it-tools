@@ -1,4 +1,5 @@
 ![logo](.github/logo.png)
+Thanks.
 
 Useful tools for developer and people working in IT. [Have a look !](https://it-tools.tech).
 
