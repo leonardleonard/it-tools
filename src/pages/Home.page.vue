@@ -10,7 +10,19 @@ const toolStore = useToolStore();
 
 useHead({ title: 'IT Tools - Handy online tools for developers' });
 const { t } = useI18n();
+
+
+// Google Analytics tracking code
+const trackingId = 'G-RKY35ZL41L'; // Replace with your actual tracking ID
+function gtag() {
+  dataLayer.push(arguments);
+}
+window.dataLayer = window.dataLayer || [];
+gtag('js', new Date());
+gtag('config', trackingId);
+
 </script>
+
 
 <template>
   <div class="pt-50px">
