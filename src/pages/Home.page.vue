@@ -6,20 +6,48 @@ import ToolCard from '../components/ToolCard.vue';
 import { useToolStore } from '@/tools/tools.store';
 import { config } from '@/config';
 
+import { onMounted } from 'vue';
+
 const toolStore = useToolStore();
 
 useHead({ title: 'IT Tools - Handy online tools for developers' });
 const { t } = useI18n();
 
 
-// Google Analytics tracking code
-const trackingId = 'G-RKY35ZL41L'; // Replace with your actual tracking ID
-function gtag() {
-  dataLayer.push(arguments);
+// add google analytics
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
 }
-window.dataLayer = window.dataLayer || [];
-gtag('js', new Date());
-gtag('config', trackingId);
+
+const loadGoogleAnalytics = () => {
+  const scriptUrl = 'https://www.googletagmanager.com/gtag/js?id=G-RKY35ZL41L';
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = scriptUrl;
+
+  script.onload = () => {
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(...args: any[]) {
+      window.dataLayer.push(...args);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-RKY35ZL41L');
+  };
+
+  script.onerror = () => {
+    console.error('Google Analytics script failed to load');
+  };
+
+  document.head.appendChild(script);
+};
+
+onMounted(() => {
+  loadGoogleAnalytics();
+});
 
 </script>
 
