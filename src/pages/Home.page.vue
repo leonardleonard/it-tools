@@ -8,6 +8,8 @@ import { config } from '@/config';
 
 import { onMounted } from 'vue';
 
+import posthog from 'posthog-js'
+
 const toolStore = useToolStore();
 
 useHead({ title: 'IT Tools - Handy online tools for developers' });
@@ -49,6 +51,8 @@ onMounted(() => {
   loadGoogleAnalytics();
 });
 
+posthog.init('phc_a2jr16vg3ffDSYqM01vLz0GlZKA09A8EsvaHpxox1Aw', { api_host: 'https://us.i.posthog.com' })
+posthog.capture('page_view')
 </script>
 
 
